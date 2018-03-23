@@ -1316,8 +1316,8 @@ MonoBehaviour:
   DaydreamCamera: {fileID: 20534226327795388}
   GearVrCamera: {fileID: 20572121803619262}
   isDebuging: 1
-  isGearVR: 0
-  isDaydream: 1
+  isGearVR: 1
+  isDaydream: 0
 --- !u!114 &114595722753622792
 MonoBehaviour:
   m_ObjectHideFlags: 1
