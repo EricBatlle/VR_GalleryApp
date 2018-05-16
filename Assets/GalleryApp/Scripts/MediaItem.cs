@@ -10,6 +10,7 @@ public class MediaItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 {
     [SerializeField] private VRInteractiveItem m_InteractiveItem;
     [SerializeField] private GalleryManager m_GalleryManager;
+    [SerializeField] private GameObject marker;
 
     [Header("Media Attributes")]
     [SerializeField] private string m_SceneToLoad;  // The name of the scene to load.
@@ -59,14 +60,14 @@ public class MediaItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     //Handle the Over event
     private void HandleOver()
     {
-        //Debug.Log("Show over state");
+        marker.SetActive(true);
     }
 
 
     //Handle the Out event
     private void HandleOut()
     {
-        //Debug.Log("Show out state");
+        marker.SetActive(false);
     }
 
 

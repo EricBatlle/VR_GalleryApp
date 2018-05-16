@@ -15,6 +15,8 @@ public class GalleryBarButton : MonoBehaviour, IPointerEnterHandler, IPointerExi
     [SerializeField] private float objectsCanFit = 4;
     [SerializeField] private int elementsToScroll = 4;
     [SerializeField] private float scrollSpeed = 0.01f;
+    [SerializeField] private Color normalColor;
+    [SerializeField] private Color highlightedColor;
 
     private float totalElements;
     private float hiddenElements;
@@ -49,6 +51,8 @@ public class GalleryBarButton : MonoBehaviour, IPointerEnterHandler, IPointerExi
         m_InteractiveItem.OnOut += HandleOut;
         m_InteractiveItem.OnClick += HandleClick;
         m_InteractiveItem.OnDoubleClick += HandleDoubleClick;
+
+        normalColor = GetComponent<Image>().color;
     }
     
     private void OnDisable()
@@ -106,27 +110,28 @@ public class GalleryBarButton : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     void IPointerEnterHandler.OnPointerEnter(UnityEngine.EventSystems.PointerEventData eventData)
     {
-        //print("OnPointerEnter");
+        this.GetComponent<Image>().color = highlightedColor;
     }
 
     void IPointerExitHandler.OnPointerExit(UnityEngine.EventSystems.PointerEventData eventData)
     {
+        this.GetComponent<Image>().color = normalColor;
     }
 
     //Handle the Over event
     private void HandleOver()
     {
-        //Debug.Log("Show over state");
+        this.GetComponent<Image>().color = highlightedColor;
     }
 
    
     //Handle the Out event
     private void HandleOut()
     {
-        //Debug.Log("Show out state");
+        this.GetComponent<Image>().color = normalColor;
     }
 
-    
+
     //Handle the DoubleClick event
     private void HandleDoubleClick()
     {
