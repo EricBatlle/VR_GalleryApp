@@ -5,8 +5,8 @@ using UnityEngine.EventSystems;
 using VRStandardAssets.Utils;
 
 public class EnableFilterUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
-{ 
-
+{
+    [SerializeField] bool startEnable = false;
     [SerializeField] private VRInteractiveItem m_InteractiveItem;
     [SerializeField] private GameObject UI;
 
@@ -21,6 +21,11 @@ public class EnableFilterUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         m_InteractiveItem.OnOver -= HandleOver;
         m_InteractiveItem.OnOut -= HandleOut;
+    }
+    
+    private void Start()
+    {
+        UI.SetActive(startEnable);
     }
 
     //Handle the Over event
@@ -39,11 +44,11 @@ public class EnableFilterUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        UI.SetActive(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        UI.SetActive(false);
     }
 }

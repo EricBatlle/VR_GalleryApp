@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 224902246359644732}
   - component: {fileID: 114671294688903524}
   - component: {fileID: 114992092405783856}
+  - component: {fileID: 114758683990410426}
+  - component: {fileID: 65503580750762860}
   m_Layer: 5
   m_Name: Toggle
   m_TagString: Untagged
@@ -79,6 +81,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &65503580750762860
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1407630075816094}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 16.8, y: 18.7, z: 1.86}
+  m_Center: {x: -70.09, y: 0, z: 0}
 --- !u!114 &114053437659918272
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -138,7 +152,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Image - 360\xBA"
+  m_Text: "Video - 360\xBA"
 --- !u!114 &114671294688903524
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -183,7 +197,18 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  m_IsOn: 1
+  m_IsOn: 0
+--- !u!114 &114758683990410426
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1407630075816094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00aa48815ea006a468470cecdfe71b3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114945982628922046
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -222,6 +247,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7997d91b47113d45bf4ab8af2b43149, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_InteractiveItem: {fileID: 114758683990410426}
+  Toggle: {fileID: 0}
 --- !u!222 &222096239316150982
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -283,8 +310,8 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1407630075816094}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -289.76617}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224100989527012828}
@@ -294,7 +321,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.3, y: 26.9}
+  m_AnchoredPosition: {x: -10.792893, y: -162.51738}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224988016710189670

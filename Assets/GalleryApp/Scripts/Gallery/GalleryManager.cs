@@ -22,8 +22,6 @@ public class GalleryManager : MonoBehaviour
     private GameObject VRPlatformController;
 
     public List<GameObject> gallery = new List<GameObject>();
-    public List<GameObject> currGallery = new List<GameObject>();
-
 
     public string urlContent;
 
@@ -72,33 +70,8 @@ public class GalleryManager : MonoBehaviour
 
             gallery.Add(interactiveMediaItemCopy);
         }
-
-        currGallery = gallery;
     }
-
-    public void SwapGallery(List<GameObject> newGallery)
-    {
-        RemoveGalleryChilds();
-
-        MediaItem newMediaItem;
-        foreach (GameObject mediaItem in newGallery)
-        {
-            print(mediaItem.GetComponent<MediaItem>().title);
-
-            interactiveMediaItemCopy = Instantiate(interactiveMediaItemPrefab, itemsParent.transform.position, new Quaternion());
-            interactiveMediaItemCopy.GetComponent<MediaItem>().setValues(mediaItem);
-            interactiveMediaItemCopy.transform.parent = itemsParent.transform;
-            interactiveMediaItemCopy.GetComponent<RectTransform>().localScale = prefabRectTransform.localScale;
-        }
-    }
-
-    private void RemoveGalleryChilds()
-    {
-        foreach (Transform child in itemsParent.transform)
-        {
-            GameObject.Destroy(child.gameObject);
-        }
-    }
+    
 
     public IEnumerator GoToScene(string m_SceneToLoad,string mediaUrlContent)
     {
