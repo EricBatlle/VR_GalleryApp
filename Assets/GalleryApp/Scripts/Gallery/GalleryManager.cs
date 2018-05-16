@@ -8,6 +8,8 @@ using VRStandardAssets.Utils;
 
 public class GalleryManager : MonoBehaviour
 {
+    public static GalleryManager instance = null;              //Static instance of GameManager which allows it to be accessed by any other script.
+
     [SerializeField] private GameObject m_VRPlatformControllerPrefab;
     [SerializeField] private GameObject interactiveMediaItemPrefab;
     [SerializeField] private RectTransform prefabRectTransform;
@@ -19,7 +21,26 @@ public class GalleryManager : MonoBehaviour
     private GameObject interactiveMediaItemCopy;
     private GameObject VRPlatformController;
 
-    public string urlContent;   
+    public List<GameObject> gallery = new List<GameObject>();
+    public List<GameObject> currGallery = new List<GameObject>();
+
+
+    public string urlContent;
+
+    private void OnEnable()
+    {
+        //Check if instance already exists
+        if (instance == null)
+
+            //if not, set instance to this
+            instance = this;
+
+        //If instance already exists and it's not this:
+        else if (instance != this)
+
+            //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
+            Destroy(gameObject);
+    }
 
     void Start()
     {
@@ -48,6 +69,34 @@ public class GalleryManager : MonoBehaviour
             interactiveMediaItemCopy.GetComponent<MediaItem>().setValues(jsonMediaObject);
             interactiveMediaItemCopy.transform.parent = itemsParent.transform;
             interactiveMediaItemCopy.GetComponent<RectTransform>().localScale = prefabRectTransform.localScale;
+
+            gallery.Add(interactiveMediaItemCopy);
+        }
+
+        currGallery = gallery;
+    }
+
+    public void SwapGallery(List<GameObject> newGallery)
+    {
+        RemoveGalleryChilds();
+
+        MediaItem newMediaItem;
+        foreach (GameObject mediaItem in newGallery)
+        {
+            print(mediaItem.GetComponent<MediaItem>().title);
+
+            interactiveMediaItemCopy = Instantiate(interactiveMediaItemPrefab, itemsParent.transform.position, new Quaternion());
+            interactiveMediaItemCopy.GetComponent<MediaItem>().setValues(mediaItem);
+            interactiveMediaItemCopy.transform.parent = itemsParent.transform;
+            interactiveMediaItemCopy.GetComponent<RectTransform>().localScale = prefabRectTransform.localScale;
+        }
+    }
+
+    private void RemoveGalleryChilds()
+    {
+        foreach (Transform child in itemsParent.transform)
+        {
+            GameObject.Destroy(child.gameObject);
         }
     }
 

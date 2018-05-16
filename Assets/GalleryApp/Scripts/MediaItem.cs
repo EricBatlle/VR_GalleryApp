@@ -33,6 +33,20 @@ public class MediaItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         this.m_SceneToLoad = this.contentType;
     }
 
+    public void setValues(GameObject mediaItemObject)
+    {
+        MediaItem mediaItem = mediaItemObject.GetComponent<MediaItem>();
+
+        if (mediaItem != null)
+        {
+            this.title = mediaItem.title;
+            this.urlThumbnail = mediaItem.urlThumbnail;
+            this.urlContent = mediaItem.urlContent;
+            this.contentType = mediaItem.contentType;
+            this.m_SceneToLoad = this.contentType;
+        }        
+    }
+
     private void OnEnable()
     {
         m_InteractiveItem.OnOver += HandleOver;
