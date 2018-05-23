@@ -11,7 +11,7 @@ public class MediaItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     [SerializeField] private VRInteractiveItem m_InteractiveItem;
     [SerializeField] private GalleryManager m_GalleryManager;
     [SerializeField] private GameObject marker;
-
+    public BackgroundImageManager backgroundManager;
     [Header("Media Attributes")]
     [SerializeField] private string m_SceneToLoad;  // The name of the scene to load.
     [SerializeField] public string title;

@@ -11,7 +11,7 @@ public class BundleLoader : MonoBehaviour {
     private void Start()
     {
         StartCoroutine("Load");
-    }
+    }    
 
     IEnumerator Load()
     {
@@ -36,7 +36,7 @@ public class BundleLoader : MonoBehaviour {
                 //    System.Reflection.Assembly.Load(txt.bytes);
 
                 GameObject Mya = bundle.LoadAsset(urlPrefabName) as GameObject; //Prefab Bundle name HERE
-                Instantiate(Mya);
+                Instantiate(Mya);                
             }
         }
     }

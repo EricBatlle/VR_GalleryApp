@@ -13,10 +13,11 @@ public class GalleryManager : MonoBehaviour
     [SerializeField] private GameObject m_VRPlatformControllerPrefab;
     [SerializeField] private GameObject interactiveMediaItemPrefab;
     [SerializeField] private RectTransform prefabRectTransform;
-    [SerializeField] private GameObject itemsParent;
+    [SerializeField] private GameObject itemsParent = null;
     private VRCameraFade m_CameraFade;                 // This fades the scene out when a new scene is about to be loaded.
-    private VRPlatformSelector m_VRPlatformSelector;    
+    private VRPlatformSelector m_VRPlatformSelector;
 
+    private bool galleryCreated;
     //Instantiable objects
     private GameObject interactiveMediaItemCopy;
     private GameObject VRPlatformController;
@@ -24,7 +25,7 @@ public class GalleryManager : MonoBehaviour
     public List<GameObject> gallery = new List<GameObject>();
 
     public string urlContent;
-
+    
     private void OnEnable()
     {
         //Check if instance already exists
@@ -54,6 +55,18 @@ public class GalleryManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (galleryCreated)
+        {
+            if (everyTextureLoaded())
+            {
+                setThumbnails();
+                galleryCreated = false;
+            }
+        }
+    }
+
     private void OnLevelWasLoaded()
     {
         //if camerafade is lost when swapping between scenes
@@ -61,6 +74,11 @@ public class GalleryManager : MonoBehaviour
     }
 
     public void CreateGallery(JsonInfo[] objects){
+        
+        itemsParent = GameObject.FindGameObjectWithTag("Grid");
+        //itemsParent = transform.Find("/GalleryCanvas/List/Grid").gameObject;
+        gallery.Clear();
+        galleryCreated = false;
         foreach (JsonInfo jsonMediaObject in objects)
         {
             interactiveMediaItemCopy = Instantiate(interactiveMediaItemPrefab, itemsParent.transform.position, new Quaternion());
@@ -70,8 +88,27 @@ public class GalleryManager : MonoBehaviour
 
             gallery.Add(interactiveMediaItemCopy);
         }
+        galleryCreated = true;
     }
-    
+
+    public void setThumbnails()
+    {
+        foreach (GameObject item in gallery)
+        {
+            item.GetComponent<MediaItem>().backgroundManager.setTexture();            
+        }
+    }
+
+    public bool everyTextureLoaded()
+    {
+        bool allOk = true;
+        foreach (GameObject item in gallery)
+        {
+            if (item.GetComponent<MediaItem>().backgroundManager.texture == null)
+                allOk = false;
+        }
+        return allOk;
+    }
 
     public IEnumerator GoToScene(string m_SceneToLoad,string mediaUrlContent)
     {

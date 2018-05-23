@@ -10,6 +10,7 @@ public class ToggleManager : MonoBehaviour {
     [SerializeField] public ToggleComponent video360;
     [SerializeField] private ToggleComponent img2d;
     [SerializeField] private ToggleComponent img360;
+    public List<ToggleComponent> toggles;
 
     [SerializeField] public bool video2dState;
     [SerializeField] public bool video360State;
@@ -22,6 +23,12 @@ public class ToggleManager : MonoBehaviour {
         video360.onChange += checkFilter;
         img2d.onChange += checkFilter;
         img360.onChange += checkFilter;
+
+        toggles = new List<ToggleComponent>();
+        toggles.Add(video2d);
+        toggles.Add(video360);
+        toggles.Add(img2d);
+        toggles.Add(img360);
     }
 
     private void OnDisable()

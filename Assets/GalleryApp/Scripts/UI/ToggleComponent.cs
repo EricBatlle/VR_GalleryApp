@@ -9,6 +9,7 @@ public class ToggleComponent : MonoBehaviour {
     [SerializeField] private VRInteractiveItem m_InteractiveItem;
     public Toggle Toggle;
     public Action onChange;
+    public bool onOver = false;
 
     private void Start()
     {
@@ -42,8 +43,20 @@ public class ToggleComponent : MonoBehaviour {
     //Handle the Click event
     private void HandleClick()
     {
-        //ToDo: NO ENTRA EN EL EVENTO CLICK EN VR
-        print("click");
+
         Toggle.isOn = !Toggle.isOn;
+    }
+
+    //Handle the Over event
+    private void HandleOver()
+    {
+        onOver = true;
+    }
+
+
+    //Handle the Out event
+    private void HandleOut()
+    {
+        onOver = false;    
     }
 }

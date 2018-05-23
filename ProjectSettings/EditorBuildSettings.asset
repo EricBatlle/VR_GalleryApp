@@ -23,3 +23,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/GalleryApp/video360.unity
     guid: 3a977b953fa0ffe4b91cb55f9968abc6
+  - enabled: 1
+    path: Assets/GalleryApp/model3d.unity
+    guid: dab025995521673459d42821f70c374b

@@ -45,6 +45,6 @@ public class DisplayManager : MonoBehaviour
     }
     public void setImg2d()
     {
-        GetComponent<BackgroundImageManager>().changeImg2d(m_GalleryManager.urlContent);
+        GetComponent<BackgroundImageManager>().changeImg(m_GalleryManager.urlContent);
     }
 }

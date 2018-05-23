@@ -11,9 +11,10 @@ public class JsonManager : MonoBehaviour {
     //Server JSON - ARRAY/OBJECT
     void Start()
     {
+        m_galleryManager = GameObject.FindGameObjectWithTag("GalleryManager").GetComponent<GalleryManager>();
         string url = jsonUrl;
         WWW www = new WWW(url);
-        StartCoroutine(WaitForRequest(www));        
+        StartCoroutine(WaitForRequest(www));
     }
 
     IEnumerator WaitForRequest(WWW www)
@@ -26,7 +27,7 @@ public class JsonManager : MonoBehaviour {
             Debug.Log("WWW Ok!: " + www.text);
             JsonInfo[] objects = JsonHelper.getJsonArray<JsonInfo>(www.text);
             //Debug.Log(objects[0].title);
-            m_galleryManager.CreateGallery(objects);
+            m_galleryManager.CreateGallery(objects);       
         }
         else
         {

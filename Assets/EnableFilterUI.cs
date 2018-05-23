@@ -4,16 +4,21 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using VRStandardAssets.Utils;
 
-public class EnableFilterUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class EnableFilterUI : MonoBehaviour, IPointerEnterHandler
 {
     [SerializeField] bool startEnable = false;
     [SerializeField] private VRInteractiveItem m_InteractiveItem;
     [SerializeField] private GameObject UI;
+    [SerializeField] private ToggleManager m_toggleM;
 
+    private BoxCollider m_collider;
+    
     private void OnEnable()
     {
         m_InteractiveItem.OnOver += HandleOver;
         m_InteractiveItem.OnOut += HandleOut;
+
+        m_collider = this.GetComponent<BoxCollider>();
     }
 
 
@@ -26,6 +31,12 @@ public class EnableFilterUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     private void Start()
     {
         UI.SetActive(startEnable);
+        //m_collider.enabled = !startEnable;
+    }
+
+    private void Update()
+    {
+        
     }
 
     //Handle the Over event
@@ -34,21 +45,16 @@ public class EnableFilterUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         UI.SetActive(true);
     }
 
-
     //Handle the Out event
     private void HandleOut()
     {
-        UI.SetActive(false);
+        
     }
-
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         UI.SetActive(true);
     }
 
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        UI.SetActive(false);
-    }
+    
 }
